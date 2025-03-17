@@ -6,6 +6,12 @@ import './index.css';
 // Define the chatbot mounting function
 const mountChatbot = () => {
   // Prevent multiple instances
+  const userId = window.chatbotConfig?.userId; // Check for user ID
+
+  if (!userId) {
+    console.warn('Chatbot not loaded: Missing user ID.');
+    return; // Stop execution if no user ID
+  }
   if (document.getElementById('chatbot-container')) return;
 
   const chatbotContainer = document.createElement('div');
