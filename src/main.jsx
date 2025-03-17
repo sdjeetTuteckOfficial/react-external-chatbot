@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Chatbot from './Chatbot';
+import './index.css';
 
 // Define the chatbot mounting function
 const mountChatbot = () => {
