@@ -2,16 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Chatbot from './Chatbot';
 
+// Define the chatbot mounting function
 const mountChatbot = () => {
-  if (document.getElementById('chatbot-container')) return; // Prevent duplicate instances
+  // Prevent multiple instances
+  if (document.getElementById('chatbot-container')) return;
 
   const chatbotContainer = document.createElement('div');
   chatbotContainer.id = 'chatbot-container';
   document.body.appendChild(chatbotContainer);
 
-  const root = ReactDOM.createRoot(chatbotContainer);
-  root.render(<Chatbot />);
+  ReactDOM.createRoot(chatbotContainer).render(<Chatbot />);
 };
 
-// Expose globally
+// ✅ Ensure `loadChatbot` is defined on the window object
 window.loadChatbot = mountChatbot;
+
+// ✅ Call `loadChatbot()` only after it's defined
+window.onload = () => {
+  if (typeof window.loadChatbot === 'function') {
+    window.loadChatbot();
+  }
+};
